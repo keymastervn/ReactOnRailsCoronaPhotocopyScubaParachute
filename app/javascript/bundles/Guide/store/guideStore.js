@@ -1,8 +1,8 @@
 import { createStore } from 'redux';
-import helloWorldReducer from '../reducers/helloWorldReducer';
+import guideReducer from '../reducers/guideReducer';
 
 const configureStore = (railsProps) => (
-  createStore(helloWorldReducer, railsProps)
+  createStore(guideReducer, railsProps)
 );
 
 export default configureStore;

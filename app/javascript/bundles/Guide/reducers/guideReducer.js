@@ -10,6 +10,8 @@ const name = (state = '', action) => {
   }
 };
 
-const helloWorldReducer = combineReducers({ name });
+const guideReducer = combineReducers({
+  name
+});
 
-export default helloWorldReducer;
+export default guideReducer;
