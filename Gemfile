@@ -68,3 +68,7 @@ gem 'seedbank'
 
 gem 'webpacker', git: 'https://github.com/rails/webpacker.git/'
 gem 'react_on_rails'
+
+gem 'mini_racer', platforms: :ruby
+
+gem 'foreman'
