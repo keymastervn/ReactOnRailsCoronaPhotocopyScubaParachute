@@ -1,4 +1,4 @@
-json.array! @guides do |g|
+json.array! @data do |g|
   json.id g.id
   json.email g.email
   json.created_at g.created_at
