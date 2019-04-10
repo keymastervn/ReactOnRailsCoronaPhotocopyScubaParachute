@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { HELLO_WORLD_NAME_UPDATE } from '../constants/guideConstants';
+import { dataTableReducer } from 'redux-remote-datatable'
 
 const name = (state = '', action) => {
   switch (action.type) {
@@ -10,6 +11,9 @@ const name = (state = '', action) => {
   }
 };
 
-const helloWorldReducer = combineReducers({ name });
+const guideReducer = combineReducers({
+  name,
+  dataTableReducer
+});
 
-export default helloWorldReducer;
+export default guideReducer;
