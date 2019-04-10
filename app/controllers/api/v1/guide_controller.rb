@@ -1,4 +1,4 @@
-class Api::V1::GuidesController < Api::BaseController
+class Api::V1::GuidesController < Api::V1::BaseController
 
   # GET /api/v1/guides/index.json
   def index
