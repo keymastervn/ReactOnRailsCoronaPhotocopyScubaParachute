@@ -65,3 +65,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'seedbank'
+
+gem 'webpacker', git: 'https://github.com/rails/webpacker.git/'
+gem 'react_on_rails'
