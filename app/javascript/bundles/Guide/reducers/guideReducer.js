@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { HELLO_WORLD_NAME_UPDATE } from '../constants/guideConstants';
 import { dataTableReducer } from 'redux-remote-datatable'
 
-const name = (state = '', action) => {
+const mainReducer = (state = '', action) => {
   switch (action.type) {
     case HELLO_WORLD_NAME_UPDATE:
       return action.text;
@@ -12,7 +12,7 @@ const name = (state = '', action) => {
 };
 
 const guideReducer = combineReducers({
-  name,
+  mainReducer,
   dataTableReducer
 });
 
