@@ -1,21 +1,12 @@
 /* eslint-disable import/prefer-default-export */
+import axios from 'axios';
 import * as consts from '../constants/guideConstants';
 import * as types from '../constants/guideTypes';
 
 export function proceedCreateNewReview(guideID, rating, comment) {
   return dispatch => {
     dispatch(saveNewReviewToStore(guideID, rating, comment))
-
-    // return axios.get(consts.API_GUIDES_SEARCH, {
-    //   params: {
-    //     searchValue
-    //   }
-    // }).then(response => {
-    //   const res = response.data.result
-    //   if (response.status === 200) {
-    //     dispatch(fetchDataOnSearchToStore(res))
-    //   }
-    // })
+    dispatch(saveNewReviewToDatabase(guideID, rating, comment))
   }
 }
 
@@ -29,5 +20,21 @@ export function saveNewReviewToStore(guideID, rating, comment) {
   return {
     type: types.SAVE_NEW_REVIEW_TO_STORE,
     payload: data
+  }
+}
+
+export function saveNewReviewToDatabase(guideID, rating, comment) {
+  return dispatch => {
+    return axios.post(consts.CONTROLLER_REVIEWS, {
+        guide_id: guideID,
+        score: rating,
+        comment
+      }
+    ).then(response => {
+      debugger
+      const res = response.data.result;
+
+      console.log("Successfully added new review")
+    })
   }
 }
