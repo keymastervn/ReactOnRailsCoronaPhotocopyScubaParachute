@@ -90,7 +90,7 @@ class ShowGuide extends React.Component {
   render() {
     const { guide } = this.props;
     return (
-      <div className="container pt-4">
+      <div className="container pt-4 mb-5">
         <a href={"/guide"}>Click here to go to home page</a>
 
         <div className="jumbotron">
