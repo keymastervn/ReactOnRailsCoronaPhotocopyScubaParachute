@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import { HELLO_WORLD_NAME_UPDATE } from '../constants/guideConstants';
+import * as types from '../constants/guideTypes';
 
 const guides = (state = '', action) => {
   switch (action.type) {
-    case HELLO_WORLD_NAME_UPDATE:
-      return action.text;
+    case types.FETCH_DATA_ON_SEARCH_TO_STORE:
+      return action.payload;
     default:
       return state;
   }
