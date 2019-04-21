@@ -31,9 +31,6 @@ export function saveNewReviewToDatabase(guideID, rating, comment) {
         comment
       }
     ).then(response => {
-      debugger
-      const res = response.data.result;
-
       console.log("Successfully added new review")
     })
   }
