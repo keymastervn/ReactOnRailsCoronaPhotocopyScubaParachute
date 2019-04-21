@@ -3,6 +3,9 @@ import React from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
+import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
+
+const { SearchBar } = Search;
 
 const columns = [{
   dataField: 'id',
@@ -61,14 +64,26 @@ class HelloWorld extends React.Component {
           />
         </form>
 
-        <div>
-          <BootstrapTable keyField='id'
-            data={ this.state.products }
-            columns={ columns }
-            pagination={ paginationFactory() }
-            filter={ filterFactory() }
-            bootstrap4 />
-        </div>
+        <ToolkitProvider
+          keyField="id"
+          data={ this.state.products }
+          columns={ columns }
+          pagination={ paginationFactory() }
+          filter={ filterFactory() }
+          search
+          bootstrap4
+        >
+          {
+            props => (
+              <div>
+                <SearchBar { ...props.searchProps } />
+                <hr />
+                <BootstrapTable { ...props.baseProps } />
+              </div>
+            )
+          }
+        </ToolkitProvider>
+
       </div>
     )
   }
