@@ -1,35 +1,42 @@
 class GuideService
+  include ApplicationHelper
   attr_accessor :params
+
+  CACHE_DURATION = 12.hours
 
   def initialize(options = {})
     self.params = options
   end
 
   def all
-    serialize Guide
-      .includes(:languages, :activities)
-      .all
+    Rails.cache.fetch(params_cache_key + __method__.to_s, expires_in: CACHE_DURATION) do
+      serialize Guide
+        .includes(:languages, :activities)
+        .all
+    end
   end
 
   def search
-    result = Guide
+    Rails.cache.fetch(params_cache_key + __method__.to_s, expires_in: CACHE_DURATION) do
+      result = Guide
 
-    if params[:searchValue].present?
-      result = get_search_result params[:searchValue]
+      if params[:searchValue].present?
+        result = get_search_result params[:searchValue]
+      end
+
+      result = serialize result
+
+      {
+        draw: params[:draw] || 1,
+        page: params[:page] || 1,
+        per_page: params[:perPage] || 10,
+        sort_field: params[:sortField],
+        sort_direction: params[:sortDirection] || "asc",
+        search_value: params[:searchValue] || "",
+        total: result.count,
+        result: result
+      }
     end
-
-    result = serialize result
-
-    {
-      draw: params[:draw] || 1,
-      page: params[:page] || 1,
-      per_page: params[:perPage] || 10,
-      sort_field: params[:sortField],
-      sort_direction: params[:sortDirection] || "asc",
-      search_value: params[:searchValue] || "",
-      total: result.count,
-      result: result
-    }
   end
 
   def serialize result
@@ -61,6 +68,10 @@ class GuideService
 
   def standard_search search_value
     Guide.includes(:languages, :activities).where('email ILIKE ?', "%#{search_value}%")
+  end
+
+  def params_cache_key
+    universal_cache_key + params.to_s
   end
 
 end
