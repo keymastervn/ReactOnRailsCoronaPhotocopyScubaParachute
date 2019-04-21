@@ -31,6 +31,21 @@ class Guide extends React.Component {
         dataField: 'display_activities',
         text: 'Activity',
         sort: true
+      }, {
+        dataField: 'df1',
+        isDummyField: true,
+        text: 'Action',
+        formatter: (cellContent, row) => {
+          return (
+            <a href={`/guide/${row.id}`}>
+              <span className="badge badge-pill badge-info">Show</span>
+            </a>
+
+          );
+        },
+        headerStyle: (colum, colIndex) => {
+          return { width: '10%', textAlign: 'center' };
+        }
       }],
 
       data: this.props.guides.slice(0, 10),
