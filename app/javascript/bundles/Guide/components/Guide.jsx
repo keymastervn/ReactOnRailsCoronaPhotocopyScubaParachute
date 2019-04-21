@@ -214,7 +214,7 @@ const RemoteAll = ({ data, page, sizePerPage, onTableChange, totalSize, columns,
                   <span style={{display: 'inline', float: 'right'}}>
                     <SearchBar
                       { ...props.searchProps }
-                      // delay={ 1000 }
+                      delay={ 1000 }
                     />
                   </span>
 
