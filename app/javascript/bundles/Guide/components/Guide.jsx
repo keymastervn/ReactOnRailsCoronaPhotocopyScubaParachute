@@ -71,6 +71,15 @@ class Guide extends React.Component {
     const { guides } = this.props;
     const { updateName } = this.props;
 
+    const CaptionElement = () => <h3 style={{
+        borderRadius: '0.25em',
+        textAlign: 'center',
+        color: 'purple',
+        border: '1px solid purple',
+        padding: '0.5em' }}>
+        Tourguide Management
+      </h3>;
+
     return (
       <div className="container pt-4">
         <ToolkitProvider
@@ -106,7 +115,8 @@ class Guide extends React.Component {
 
                         <div>
                           <BootstrapTable { ...props.baseProps }
-                          { ...paginationTableProps }
+                            { ...paginationTableProps }
+                            caption={<CaptionElement />}
                             striped
                             hover
                             condensed
