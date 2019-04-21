@@ -36,7 +36,7 @@ class ShowGuide extends React.Component {
 
     if (this.props.reviews.length === 0) return comp;
 
-    this.props.reviews.forEach(e => {
+    this.props.reviews.reverse().forEach(e => {
       comp.push(
         <div key={`review-${e.id}`}>
           <small className="card-text">
