@@ -7,11 +7,12 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
+    "react-bootstrap-table-next": "^3.1.1",
     "react-dom": "^16.8.6",
     "react-on-rails": "11.2.2",
     "react-redux": "^7.0.1",
-    "redux": "^4.0.1"
-    "redux-logger": "^3.0.6",
+    "redux": "^4.0.1",
+    "redux-logger": "^3.0.6"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.3.1"
