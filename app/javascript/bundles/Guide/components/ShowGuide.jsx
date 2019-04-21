@@ -31,6 +31,22 @@ class ShowGuide extends React.Component {
     event.preventDefault();
   }
 
+  renderAverageRating() {
+    const sum = this.props.reviews.reduce((previous, current) => current.score += previous.score);
+    const average = sum / this.props.reviews.length;
+
+    return (
+      <StarRatings
+        rating={average}
+        starRatedColor="red"
+        numberOfStars={6}
+        starDimension="15px"
+        starSpacing="5px"
+        name='rating'
+      />
+    )
+  }
+
   renderReviews() {
     let comp = [];
 
@@ -87,7 +103,7 @@ class ShowGuide extends React.Component {
               <p> This is <b>{guide.email}</b></p>
               <p> He knows: <b>{guide.display_languages}</b> </p>
               <p> He can: <b>{guide.display_activities}</b> </p>
-              <p> His avg rating: </p>
+              <div> His avg rating: &nbsp;&nbsp; {this.renderAverageRating()}</div>
             </div>
 
             {this.renderReviews()}
