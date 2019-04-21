@@ -7,17 +7,17 @@ class ShowGuide extends React.Component {
     super(props, context)
 
     this.state = {
-      value: '',
+      comment: '',
       rating: 0
     };
 
     this.handleReviewChange = this.handleReviewChange.bind(this);
     this.changeRating = this.changeRating.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   handleReviewChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({comment: event.target.value});
   }
 
   changeRating( newRating, name ) {
@@ -26,8 +26,7 @@ class ShowGuide extends React.Component {
     });
   }
 
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+  handleFormSubmit(event) {
     event.preventDefault();
   }
 
