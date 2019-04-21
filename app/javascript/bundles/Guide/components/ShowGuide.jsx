@@ -16,6 +16,8 @@ class ShowGuide extends React.Component {
           <p>Please tell guide to be honest and polite to all travelers</p>
 
           <p> This is <b>{guide.email}</b></p>
+          <p> He knows: <b>{guide.display_languages}</b> </p>
+          <p> He can: <b>{guide.display_activities}</b> </p>
         </div>
       </div>
     )
