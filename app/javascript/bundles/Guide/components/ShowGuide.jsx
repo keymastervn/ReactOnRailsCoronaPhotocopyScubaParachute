@@ -10,6 +10,8 @@ class ShowGuide extends React.Component {
     const { guide } = this.props;
     return (
       <div className="container pt-4">
+        <a href={"/guide"}>Click here to go to home page</a>
+
         <div class="jumbotron">
           <h1>Guide Homepage</h1>
           <hr />
