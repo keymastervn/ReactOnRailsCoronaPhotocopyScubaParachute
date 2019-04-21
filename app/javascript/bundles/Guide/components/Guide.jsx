@@ -78,6 +78,27 @@ class Guide extends React.Component {
     this.fetchData = this.fetchData.bind(this)
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      data: nextProps.guides.slice(0, 5)
+    })
+
+    this.setState({
+      options: {
+        custom: true,
+        totalSize: nextProps.guides.length,
+        hideSizePerPage: false,
+        sizePerPageList: [{
+          text: '5', value: 5
+        }, {
+          text: '10', value: 10
+        }, {
+          text: 'All', value: nextProps.guides.length
+        }]
+      }
+    })
+  }
+
   fetchData() {
     if (this.node.props.search.searchText !== undefined && this.node.props.search.searchText !== "") {
       // TODO Search remote
