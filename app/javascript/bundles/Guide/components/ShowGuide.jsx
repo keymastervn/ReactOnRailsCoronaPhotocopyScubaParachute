@@ -78,6 +78,7 @@ class ShowGuide extends React.Component {
 
 ShowGuide.propTypes = {
   guide: PropTypes.object.isRequired,
+  reviews: PropTypes.array,
 };
 
 export default ShowGuide;

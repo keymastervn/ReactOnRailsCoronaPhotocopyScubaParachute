@@ -19,9 +19,19 @@ const guide = (state = '', action) => {
   }
 };
 
+const reviews = (state = '', action) => {
+  switch (action.type) {
+    // case types.FETCH_DATA_ON_SEARCH_TO_STORE:
+    //   return action.payload;
+    default:
+      return state;
+  }
+};
+
 const guideReducer = combineReducers({
   guides,
-  guide
+  guide,
+  reviews
 });
 
 export default guideReducer;
