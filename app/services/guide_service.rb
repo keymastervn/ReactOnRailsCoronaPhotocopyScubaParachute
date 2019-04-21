@@ -11,21 +11,15 @@ class GuideService
       .all
   end
 
-  def old_search
-    result = Guide.all
-
-    if params[:sortField].present?
-      sortHash = {}
-      sortHash[params[:sortField].to_sym] = params[:sortDirection].to_sym
-      result = result.order(sortHash)
-    end
+  def search
+    result = Guide.includes(:languages, :activities)
 
     if params[:searchValue].present?
       search = "%#{params[:searchValue]}%"
-      result = result.where('official_name ILIKE ?', search)
+      result = result.where('email ILIKE ?', search)
     end
 
-    result = result.page(params[:page]).per(params[:perPage])
+    result = serialize result
 
     {
       draw: params[:draw] || 1,
@@ -34,7 +28,7 @@ class GuideService
       sort_field: params[:sortField],
       sort_direction: params[:sortDirection] || "asc",
       search_value: params[:searchValue] || "",
-      total: guides.count,
+      total: result.count,
       result: result
     }
   end
