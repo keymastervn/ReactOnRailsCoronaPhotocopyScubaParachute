@@ -44,7 +44,7 @@ const columns = [{
   sort: true
 }];
 
-class HelloWorld extends React.Component {
+class Guide extends React.Component {
   constructor(props, context) {
     super(props, context)
 
@@ -135,25 +135,6 @@ class HelloWorld extends React.Component {
       }]
     };
 
-    const invisibleTestComp = (
-      <div>
-        <h3>
-          Hello, {guides}!
-        </h3>
-        <hr />
-        <form >
-          <label htmlFor="guides">
-            Say hello to:
-          </label>
-          <input
-            id="guides"
-            type="text"
-            value={guides}
-            onChange={(e) => updateName(e.target.value)}
-          />
-        </form>
-      </div>
-    )
     return (
       <div className="container pt-4">
         <ToolkitProvider
@@ -220,9 +201,9 @@ class HelloWorld extends React.Component {
   }
 }
 
-HelloWorld.propTypes = {
-  guides: PropTypes.string.isRequired,
+Guide.propTypes = {
+  guides: PropTypes.array.isRequired,
   updateName: PropTypes.func.isRequired,
 };
 
-export default HelloWorld;
+export default Guide;
