@@ -61,7 +61,7 @@ class ShowGuide extends React.Component {
           <br />
           <StarRatings
             rating={e.score}
-            starRatedColor="yellow"
+            starRatedColor="red"
             numberOfStars={6}
             starDimension="15px"
             name='rating'
