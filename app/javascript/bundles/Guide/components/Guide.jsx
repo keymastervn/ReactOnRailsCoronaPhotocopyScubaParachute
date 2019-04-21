@@ -67,13 +67,13 @@ class Guide extends React.Component {
         }, {
           text: 'All', value: this.props.guides.length
         }]
-      }
+      },
+      data: this.props.guides
     }
   }
 
   render() {
-    const { guides } = this.props;
-    const { updateName } = this.props;
+    const data = this.state.data;
 
     const CaptionElement = () => <h3 style={{
         borderRadius: '0.25em',
@@ -88,7 +88,7 @@ class Guide extends React.Component {
       <div className="container pt-4">
         <ToolkitProvider
           keyField="id"
-          data={ guides }
+          data={ data }
           columns={ this.state.columns }
           search
           bootstrap4
