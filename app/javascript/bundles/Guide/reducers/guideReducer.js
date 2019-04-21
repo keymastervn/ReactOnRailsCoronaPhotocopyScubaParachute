@@ -10,8 +10,18 @@ const guides = (state = '', action) => {
   }
 };
 
+const guide = (state = '', action) => {
+  switch (action.type) {
+    // case types.FETCH_DATA_ON_SEARCH_TO_STORE:
+    //   return action.payload;
+    default:
+      return state;
+  }
+};
+
 const guideReducer = combineReducers({
-  guides
+  guides,
+  guide
 });
 
 export default guideReducer;
