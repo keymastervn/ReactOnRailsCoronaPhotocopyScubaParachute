@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class GuideController < ApplicationController
-  before_action :set_user, only: :show
+  before_action :set_guide, only: :show
 
   layout "guide_management"
 
