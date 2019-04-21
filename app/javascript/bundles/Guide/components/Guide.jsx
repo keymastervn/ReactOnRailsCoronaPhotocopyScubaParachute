@@ -135,7 +135,12 @@ class HelloWorld extends React.Component {
                   delay={ 1000 }
                 />
                 <hr />
-                <BootstrapTable { ...props.baseProps } pagination={ paginationFactory() } />
+                <BootstrapTable { ...props.baseProps }
+                  pagination={ paginationFactory() }
+                  striped
+                  hover
+                  condensed
+                />
               </div>
             )
           }
