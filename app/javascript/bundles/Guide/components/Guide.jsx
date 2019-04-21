@@ -81,6 +81,7 @@ class Guide extends React.Component {
   fetchData() {
     if (this.node.props.search.searchText !== undefined && this.node.props.search.searchText !== "") {
       // TODO Search remote
+      this.props.fetchDataOnSearch(this.node.props.search.searchText)
     }
   }
 
@@ -172,7 +173,6 @@ class Guide extends React.Component {
 
 Guide.propTypes = {
   guides: PropTypes.array.isRequired,
-  updateName: PropTypes.func.isRequired,
 };
 
 const CaptionElement = () => <h3 style={{
