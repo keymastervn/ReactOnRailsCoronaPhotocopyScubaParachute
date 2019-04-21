@@ -4,6 +4,6 @@ class GuideController < ApplicationController
   layout "guide_management"
 
   def index
-    @props = { guides: "Stranger" }
+    @props = { guides: GuideService.new.all }
   end
 end
