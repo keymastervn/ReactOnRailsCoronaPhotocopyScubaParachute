@@ -7,10 +7,16 @@ class ShowGuide extends React.Component {
   }
 
   render() {
-    debugger
+    const { guide } = this.props;
     return (
       <div className="container pt-4">
-        This is guide
+        <div class="jumbotron">
+          <h1>Guide Homepage</h1>
+          <hr />
+          <p>Please tell guide to be honest and polite to all travelers</p>
+
+          <p> This is <b>{guide.email}</b></p>
+        </div>
       </div>
     )
   }
