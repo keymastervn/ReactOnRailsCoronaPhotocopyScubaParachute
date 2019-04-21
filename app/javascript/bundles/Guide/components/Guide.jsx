@@ -25,7 +25,7 @@ class HelloWorld extends React.Component {
     super(props, context)
 
     this.state = {
-      products: [
+      guides: [
         {
           id: 1,
           name: "Dat",
@@ -36,34 +36,93 @@ class HelloWorld extends React.Component {
           name: "Mami",
           price: 9999
         },
+        {
+          id: 3,
+          name: "Nguyen",
+          price: 999
+        },
+        {
+          id: 4,
+          name: "Keita",
+          price: 999
+        },
+        {
+          id: 5,
+          name: "Vu",
+          price: 999
+        },
+        {
+          id: 6,
+          name: "Jimmy",
+          price: 323
+        },
+        {
+          id: 7,
+          name: "Hien",
+          price: 100
+        },
+        {
+          id: 8,
+          name: "Ha",
+          price: 500
+        },
+        {
+          id: 9,
+          name: "Tram",
+          price: 99
+        },
+        {
+          id: 10,
+          name: "Tuan Dao",
+          price: 212
+        },
+        {
+          id: 11,
+          name: "Dat",
+          price: 786
+        },
+        {
+          id: 12,
+          name: "Tuan Nguyen",
+          price: 32323
+        },
+        {
+          id: 13,
+          name: "Truong Luong",
+          price: 1234
+        }
       ]
     }
   }
 
   render() {
-    const { name } = this.props;
+    const { guides } = this.props;
     const { updateName } = this.props;
-    return (
-      <div className="container">
+
+    const invisibleTestComp = (
+      <div>
         <h3>
-          Hello, {name}!
+          Hello, {guides}!
         </h3>
         <hr />
         <form >
-          <label htmlFor="name">
+          <label htmlFor="guides">
             Say hello to:
           </label>
           <input
-            id="name"
+            id="guides"
             type="text"
-            value={name}
+            value={guides}
             onChange={(e) => updateName(e.target.value)}
           />
         </form>
-
+      </div>
+    )
+    return (
+      <div className="container">
         <ToolkitProvider
           keyField="id"
-          data={ this.state.products }
+          data={ this.state.guides }
           columns={ columns }
           search
           bootstrap4
@@ -88,7 +147,7 @@ class HelloWorld extends React.Component {
 }
 
 HelloWorld.propTypes = {
-  name: PropTypes.string.isRequired,
+  guides: PropTypes.string.isRequired,
   updateName: PropTypes.func.isRequired,
 };
 

@@ -4,6 +4,6 @@ class GuideController < ApplicationController
   layout "guide_management"
 
   def index
-    @props = { name: "Stranger" }
+    @props = { guides: "Stranger" }
   end
 end
