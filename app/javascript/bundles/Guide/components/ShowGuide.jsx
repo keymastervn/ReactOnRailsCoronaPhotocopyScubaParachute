@@ -31,6 +31,46 @@ class ShowGuide extends React.Component {
     event.preventDefault();
   }
 
+  renderReviews() {
+    let comp = [];
+
+    if (this.props.reviews.length === 0) return comp;
+
+    this.props.reviews.forEach(e => {
+      comp.push(
+        <div key={`review-${e.id}`}>
+          <small className="card-text">
+            {e.comment}
+          </small>
+          <br />
+          <StarRatings
+            rating={e.score}
+            starRatedColor="yellow"
+            numberOfStars={6}
+            starDimension="15px"
+            name='rating'
+          />
+          <hr />
+        </div>
+      )
+    })
+
+    return (
+      <div className="col-sm-6">
+        <div className="card" style={{height: '14rem', maxHeight: '14rem', overflowY: 'auto'}}>
+          <div className="card-header">
+            Featured
+          </div>
+          <div className="card-body">
+            <h5 className="card-title">Reviews</h5>
+            {comp}
+            <a href="#reviewInput" className="btn btn-primary">Add Review</a>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   render() {
     const { guide } = this.props;
     return (
@@ -40,12 +80,19 @@ class ShowGuide extends React.Component {
         <div className="jumbotron">
           <h1>Guide Homepage</h1>
           <hr />
-          <p>Please tell guide to be honest and polite to all travelers</p>
+          <div className="row">
+            <div className="col-sm-6">
+              <p>Please tell guide to be honest and polite to all travelers</p>
 
-          <p> This is <b>{guide.email}</b></p>
-          <p> He knows: <b>{guide.display_languages}</b> </p>
-          <p> He can: <b>{guide.display_activities}</b> </p>
-          <p> His rating: </p>
+              <p> This is <b>{guide.email}</b></p>
+              <p> He knows: <b>{guide.display_languages}</b> </p>
+              <p> He can: <b>{guide.display_activities}</b> </p>
+              <p> His avg rating: </p>
+            </div>
+
+            {this.renderReviews()}
+
+          </div>
         </div>
 
         <h3> He would like to get your appreciation </h3>
@@ -70,7 +117,6 @@ class ShowGuide extends React.Component {
 
           <button type="submit" className="btn btn-primary">Submit</button>
         </form>
-
       </div>
     )
   }
