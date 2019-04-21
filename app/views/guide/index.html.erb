@@ -1,2 +1,4 @@
 <h1>Guide Management</h1>
-<%= react_component("GuideApp", props: @props, prerender: false) %>
+<%= redux_store("guideStore", props: @props) %>;
+<%= react_component("GuideApp", prerender: false) %>
+<%= react_component("GuideDataTableApp", prerender: false) %>

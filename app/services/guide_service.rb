@@ -20,7 +20,7 @@ class GuideService
 
     if params[:searchValue].present?
       search = "%#{params[:searchValue]}%"
-      result = result.where('official_name ILIKE ?', search)
+      result = result.where('name ILIKE ?', search)
     end
 
     result = result.page(params[:page]).per(params[:perPage])
