@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 
 const { SearchBar } = Search;
@@ -14,12 +13,10 @@ const columns = [{
 }, {
   dataField: 'name',
   text: 'Product Name',
-  filter: textFilter(),
   sort: true
 }, {
   dataField: 'price',
   text: 'Product Price',
-  filter: textFilter(),
   sort: true
 }];
 
@@ -69,7 +66,6 @@ class HelloWorld extends React.Component {
           data={ this.state.products }
           columns={ columns }
           pagination={ paginationFactory() }
-          filter={ filterFactory() }
           search
           bootstrap4
         >
