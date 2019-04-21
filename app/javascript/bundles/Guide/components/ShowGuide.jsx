@@ -31,7 +31,8 @@ class ShowGuide extends React.Component {
   }
 
   renderAverageRating() {
-    const sum = this.props.reviews.reduce((previous, current) => current.score += previous.score);
+    let sum = 0;
+    this.props.reviews.forEach(e => sum += e.score );
     const average = sum / this.props.reviews.length;
 
     return (
@@ -51,7 +52,7 @@ class ShowGuide extends React.Component {
 
     if (this.props.reviews.length === 0) return comp;
 
-    this.props.reviews.reverse().forEach(e => {
+    [...this.props.reviews].reverse().forEach(e => {
       comp.push(
         <div key={`review-${e.id}`}>
           <small className="card-text">
