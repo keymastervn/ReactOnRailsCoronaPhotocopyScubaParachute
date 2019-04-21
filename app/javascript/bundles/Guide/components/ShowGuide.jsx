@@ -27,6 +27,13 @@ class ShowGuide extends React.Component {
   }
 
   handleFormSubmit(event) {
+    if (this.state.rating < 1) return;
+
+    this.props.proceedCreateNewReview(
+      this.props.guide.id,
+      this.state.rating,
+      this.state.comment
+    )
     event.preventDefault();
   }
 

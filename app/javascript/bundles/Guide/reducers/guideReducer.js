@@ -21,8 +21,10 @@ const guide = (state = '', action) => {
 
 const reviews = (state = '', action) => {
   switch (action.type) {
-    // case types.FETCH_DATA_ON_SEARCH_TO_STORE:
-    //   return action.payload;
+    case types.SAVE_NEW_REVIEW_TO_STORE:
+      state.push(action.payload)
+
+      return [...state]
     default:
       return state;
   }
