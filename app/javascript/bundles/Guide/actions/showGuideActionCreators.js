@@ -4,7 +4,7 @@ import * as types from '../constants/guideTypes';
 
 export function proceedCreateNewReview(guideID, rating, comment) {
   return dispatch => {
-    dispatch(saveNewReviewToStore(rating, comment))
+    dispatch(saveNewReviewToStore(guideID, rating, comment))
 
     // return axios.get(consts.API_GUIDES_SEARCH, {
     //   params: {
@@ -19,20 +19,15 @@ export function proceedCreateNewReview(guideID, rating, comment) {
   }
 }
 
-export function saveNewReviewToStore(rating, comment) {
+export function saveNewReviewToStore(guideID, rating, comment) {
   const data = {
+    id: Math.floor(Math.random() * 10000000) + 1,
+    guide_id: guideID,
     score: rating,
     comment
   }
   return {
     type: types.SAVE_NEW_REVIEW_TO_STORE,
     payload: data
-  }
-}
-
-export function fetchDataOnSearchCompleted() {
-  // TODO add a dispatch to check user available credit here
-  return {
-    type: types.FETCH_DATA_ON_SEARCH_COMPLETED
   }
 }
