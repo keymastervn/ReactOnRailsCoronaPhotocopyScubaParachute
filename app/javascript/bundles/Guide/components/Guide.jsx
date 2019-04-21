@@ -6,30 +6,6 @@ import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 
 const { SearchBar } = Search;
 
-const sizePerPageRenderer = ({
-  options,
-  currSizePerPage,
-  onSizePerPageChange
-}) => (
-  <div className="btn-group" role="group">
-    {
-      options.map((option) => {
-        const isSelect = currSizePerPage === `${option.page}`;
-        return (
-          <button
-            key={ option.text }
-            type="button"
-            onClick={ () => onSizePerPageChange(option.page) }
-            className={ `btn ${isSelect ? 'btn-primary' : 'btn-warning'}` }
-          >
-            { option.text }
-          </button>
-        );
-      })
-    }
-  </div>
-);
-
 class Guide extends React.Component {
   constructor(props, context) {
     super(props, context)
@@ -56,52 +32,33 @@ class Guide extends React.Component {
         text: 'Activity',
         sort: true
       }],
-      options: {
-        custom: true,
-        totalSize: this.props.guides.length,
-        hideSizePerPage: false,
-        sizePerPageList: [{
-          text: '5', value: 5
-        }, {
-          text: '10', value: 10
-        }, {
-          text: 'All', value: this.props.guides.length
-        }]
-      },
-      data: this.props.guides.slice(0, 5),
+
+      data: this.props.guides.slice(0, 10),
       page: 1,
       totalSize: this.props.guides.length,
-      sizePerPage: 5
+      sizePerPage: 10
     }
 
     this.handleTableChange = this.handleTableChange.bind(this)
     this.fetchData = this.fetchData.bind(this)
   }
 
+  componentDidMount() {
+    this.setState({
+      data: this.props.guides.slice(0, 10),
+      totalSize: this.props.guides.length
+    })
+  }
+
   componentWillReceiveProps(nextProps) {
     this.setState({
-      data: nextProps.guides.slice(0, 5)
-    })
-
-    this.setState({
-      options: {
-        custom: true,
-        totalSize: nextProps.guides.length,
-        hideSizePerPage: false,
-        sizePerPageList: [{
-          text: '5', value: 5
-        }, {
-          text: '10', value: 10
-        }, {
-          text: 'All', value: nextProps.guides.length
-        }]
-      }
+      data: nextProps.guides.slice(0, 10),
+      totalSize: nextProps.guides.length
     })
   }
 
   fetchData() {
     if (this.node.props.search.searchText !== undefined && this.node.props.search.searchText !== "") {
-      // TODO Search remote
       this.props.fetchDataOnSearch(this.node.props.search.searchText)
     }
   }
@@ -179,7 +136,6 @@ class Guide extends React.Component {
       <div className="container pt-4">
         <RemoteAll
           columns={ this.state.columns }
-          options={ this.state.options }
           data={ this.state.data }
           page={ this.state.page }
           sizePerPage={ this.state.sizePerPage }
@@ -205,7 +161,7 @@ const CaptionElement = () => <h3 style={{
   Tourguide Management
 </h3>;
 
-const RemoteAll = ({ data, page, sizePerPage, onTableChange, totalSize, columns, options, container }) => (
+const RemoteAll = ({ data, page, sizePerPage, onTableChange, totalSize, columns, container }) => (
   <ToolkitProvider
     keyField="id"
     data={ data }
@@ -218,7 +174,7 @@ const RemoteAll = ({ data, page, sizePerPage, onTableChange, totalSize, columns,
         <div>
           <PaginationProvider
             pagination={ paginationFactory(
-              Object.assign({}, options)
+              { page, sizePerPage, totalSize, custom: true, hideSizePerPage: false }
             ) }
           >
             {
