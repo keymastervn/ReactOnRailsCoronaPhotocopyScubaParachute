@@ -13,6 +13,15 @@ class Api::V1::GuidesController < ApiController
   protected
 
   def guide_service
-    GuideService.new(params)
+    GuideService.new(guide_params)
+  end
+
+  private
+
+  def guide_params
+    params
+      .permit(
+        :searchValue
+      )
   end
 end
