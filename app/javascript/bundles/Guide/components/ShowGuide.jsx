@@ -38,9 +38,13 @@ class ShowGuide extends React.Component {
   }
 
   renderAverageRating() {
-    let sum = 0;
-    this.props.reviews.forEach(e => sum += e.score );
-    const average = sum / this.props.reviews.length;
+    let average = 0;
+
+    if (this.props.reviews.length > 0) {
+      let sum = 0;
+      this.props.reviews.forEach(e => sum += e.score );
+      average = sum / this.props.reviews.length;
+    }
 
     return (
       <StarRatings
