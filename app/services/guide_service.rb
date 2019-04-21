@@ -6,10 +6,12 @@ class GuideService
   end
 
   def all
-    Guide.all
+    serialize Guide
+      .includes(:languages, :activities)
+      .all
   end
 
-  def search
+  def old_search
     result = Guide.all
 
     if params[:sortField].present?
@@ -35,5 +37,12 @@ class GuideService
       total: guides.count,
       result: result
     }
+  end
+
+  def serialize result
+    result.as_json(
+      only: [:id, :email],
+      methods: [:display_languages, :display_activities]
+    )
   end
 end

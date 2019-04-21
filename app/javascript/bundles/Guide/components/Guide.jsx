@@ -30,117 +30,66 @@ const sizePerPageRenderer = ({
   </div>
 );
 
-const columns = [{
-  dataField: 'id',
-  text: 'Product ID',
-  sort: true
-}, {
-  dataField: 'name',
-  text: 'Product Name',
-  sort: true
-}, {
-  dataField: 'price',
-  text: 'Product Price',
-  sort: true
-}];
-
 class Guide extends React.Component {
   constructor(props, context) {
     super(props, context)
 
     this.state = {
-      guides: [
-        {
-          id: 1,
-          name: "Dat",
-          price: 999
+      columns: [{
+        dataField: 'id',
+        text: 'Guide ID',
+        sort: true,
+        headerStyle: (colum, colIndex) => {
+          return { width: '10%', textAlign: 'center' };
         },
-        {
-          id: 2,
-          name: "Mami",
-          price: 9999
-        },
-        {
-          id: 3,
-          name: "Nguyen",
-          price: 999
-        },
-        {
-          id: 4,
-          name: "Keita",
-          price: 999
-        },
-        {
-          id: 5,
-          name: "Vu",
-          price: 999
-        },
-        {
-          id: 6,
-          name: "Jimmy",
-          price: 323
-        },
-        {
-          id: 7,
-          name: "Hien",
-          price: 100
-        },
-        {
-          id: 8,
-          name: "Ha",
-          price: 500
-        },
-        {
-          id: 9,
-          name: "Tram",
-          price: 99
-        },
-        {
-          id: 10,
-          name: "Tuan Dao",
-          price: 212
-        },
-        {
-          id: 11,
-          name: "Dat",
-          price: 786
-        },
-        {
-          id: 12,
-          name: "Tuan Nguyen",
-          price: 32323
-        },
-        {
-          id: 13,
-          name: "Truong Luong",
-          price: 1234
-        }
-      ]
+        align: 'center'
+      }, {
+        dataField: 'email',
+        text: 'Email',
+        sort: true
+      }, {
+        dataField: 'display_languages',
+        text: 'Languages',
+        sort: true
+      }, {
+        dataField: 'display_activities',
+        text: 'Activity',
+        sort: true
+      }],
+      options: {
+        custom: true,
+        totalSize: this.props.guides.length,
+        hideSizePerPage: false,
+        sizePerPageList: [{
+          text: '5', value: 5
+        }, {
+          text: '10', value: 10
+        }, {
+          text: 'All', value: this.props.guides.length
+        }]
+      }
     }
   }
 
   render() {
     const { guides } = this.props;
     const { updateName } = this.props;
-    const options = {
-      custom: true,
-      totalSize: this.state.guides.length,
-      hideSizePerPage: false,
-      sizePerPageList: [{
-        text: '5', value: 5
-      }, {
-        text: '10', value: 10
-      }, {
-        text: 'All', value: this.state.guides.length
-      }]
-    };
+
+    const CaptionElement = () => <h3 style={{
+        borderRadius: '0.25em',
+        textAlign: 'center',
+        color: 'purple',
+        border: '1px solid purple',
+        padding: '0.5em' }}>
+        Tourguide Management
+      </h3>;
 
     return (
       <div className="container pt-4">
         <ToolkitProvider
           keyField="id"
-          data={ this.state.guides }
-          columns={ columns }
+          data={ guides }
+          columns={ this.state.columns }
           search
           bootstrap4
         >
@@ -148,7 +97,7 @@ class Guide extends React.Component {
             props => (
               <div>
                 <PaginationProvider
-                  pagination={ paginationFactory(options) }
+                  pagination={ paginationFactory(this.state.options) }
                 >
                   {
                     ({
@@ -170,7 +119,8 @@ class Guide extends React.Component {
 
                         <div>
                           <BootstrapTable { ...props.baseProps }
-                          { ...paginationTableProps }
+                            { ...paginationTableProps }
+                            caption={<CaptionElement />}
                             striped
                             hover
                             condensed
