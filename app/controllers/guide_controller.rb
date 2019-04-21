@@ -10,7 +10,12 @@ class GuideController < ApplicationController
   end
 
   def show
-    @props = { guide: @guide }
+    @props = {
+      guide: @guide.as_json(
+        only: [:id, :email],
+        methods: [:display_languages, :display_activities]
+      )
+    }
   end
 
   private
