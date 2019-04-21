@@ -4884,6 +4884,10 @@ react-bootstrap-table-next@^3.1.1:
     react-transition-group "2.5.3"
     underscore "1.9.1"
 
+react-bootstrap-table2-paginator@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/react-bootstrap-table2-paginator/-/react-bootstrap-table2-paginator-2.0.6.tgz#fa35f491cbf2f0ddc9fda257f0982ef1fe72f2c4"
+
 react-dom@^16.8.6:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.8.6.tgz#71d6303f631e8b0097f56165ef608f051ff6e10f"
