@@ -38,7 +38,11 @@ class Guide extends React.Component {
       columns: [{
         dataField: 'id',
         text: 'Guide ID',
-        sort: true
+        sort: true,
+        headerStyle: (colum, colIndex) => {
+          return { width: '10%', textAlign: 'center' };
+        },
+        align: 'center'
       }, {
         dataField: 'email',
         text: 'Email',
