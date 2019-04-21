@@ -65,16 +65,18 @@ class HelloWorld extends React.Component {
           keyField="id"
           data={ this.state.products }
           columns={ columns }
-          pagination={ paginationFactory() }
           search
           bootstrap4
         >
           {
             props => (
               <div>
-                <SearchBar { ...props.searchProps } />
+                <SearchBar
+                  { ...props.searchProps }
+                  delay={ 1000 }
+                />
                 <hr />
-                <BootstrapTable { ...props.baseProps } />
+                <BootstrapTable { ...props.baseProps } pagination={ paginationFactory() } />
               </div>
             )
           }
