@@ -10,7 +10,7 @@ class GuideService
 
   def all
     Rails.cache.fetch(params_cache_key + __method__.to_s, expires_in: CACHE_DURATION) do
-      serialize Guide
+      generate_json serialize Guide
         .includes(:languages, :activities)
         .all
     end
@@ -18,24 +18,12 @@ class GuideService
 
   def search
     Rails.cache.fetch(params_cache_key + __method__.to_s, expires_in: CACHE_DURATION) do
-      result = Guide
 
-      if params[:searchValue].present?
-        result = get_search_result params[:searchValue]
-      end
-
-      result = serialize result
-
-      {
-        draw: params[:draw] || 1,
-        page: params[:page] || 1,
-        per_page: params[:perPage] || 10,
-        sort_field: params[:sortField],
-        sort_direction: params[:sortDirection] || "asc",
-        search_value: params[:searchValue] || "",
-        total: result.count,
-        result: result
-      }
+      params[:searchValue].present? ?
+        (
+          generate_json serialize get_search_result params[:searchValue]
+        ) :
+        all
     end
   end
 
@@ -74,4 +62,16 @@ class GuideService
     universal_cache_key + params.to_s
   end
 
+  def generate_json result
+    {
+      draw: params[:draw] || 1,
+      page: params[:page] || 1,
+      per_page: params[:perPage] || 10,
+      sort_field: params[:sortField],
+      sort_direction: params[:sortDirection] || "asc",
+      search_value: params[:searchValue] || "",
+      total: result.count,
+      result: result
+    }
+  end
 end
