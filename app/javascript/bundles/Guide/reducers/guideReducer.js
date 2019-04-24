@@ -4,7 +4,7 @@ import * as types from '../constants/guideTypes';
 const guides = (state = '', action) => {
   switch (action.type) {
     case types.FETCH_DATA_ON_SEARCH_TO_STORE:
-      return action.payload;
+      return Object.assign({}, state, { result: action.payload })
     default:
       return state;
   }
